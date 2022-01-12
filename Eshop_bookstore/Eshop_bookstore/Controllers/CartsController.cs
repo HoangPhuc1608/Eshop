@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Eshop_bookstore.Data;
-using Eshop_bookstore.Models;
+using Eshop_Bookstore.Data;
+using Eshop_Bookstore.Models;
 
-namespace Eshop_bookstore.Controllers
+namespace Eshop_Bookstore.Controllers
 {
     public class CartsController : Controller
     {
-        private readonly Eshop_bookstoreContext _context;
+        private readonly Eshop_BookstoreContext _context;
 
-        public CartsController(Eshop_bookstoreContext context)
+        public CartsController(Eshop_BookstoreContext context)
         {
             _context = context;
         }
@@ -22,8 +22,8 @@ namespace Eshop_bookstore.Controllers
         // GET: Carts
         public async Task<IActionResult> Index()
         {
-            var eshop_bookstoreContext = _context.Cart.Include(c => c.Accounts).Include(c => c.Products);
-            return View(await eshop_bookstoreContext.ToListAsync());
+            var eshop_BookstoreContext = _context.Carts.Include(c => c.Account).Include(c => c.Product);
+            return View(await eshop_BookstoreContext.ToListAsync());
         }
 
         // GET: Carts/Details/5
@@ -34,9 +34,9 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var cart = await _context.Cart
-                .Include(c => c.Accounts)
-                .Include(c => c.Products)
+            var cart = await _context.Carts
+                .Include(c => c.Account)
+                .Include(c => c.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cart == null)
             {
@@ -49,8 +49,8 @@ namespace Eshop_bookstore.Controllers
         // GET: Carts/Create
         public IActionResult Create()
         {
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Fullname");
-            ViewData["ProductId"] = new SelectList(_context.Set<Products>(), "Id", "Name");
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Id");
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id");
             return View();
         }
 
@@ -59,7 +59,7 @@ namespace Eshop_bookstore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,AccountId,ProductId,Quanity")] Cart cart)
+        public async Task<IActionResult> Create([Bind("Id,AccountId,ProductId,Quantity")] Cart cart)
         {
             if (ModelState.IsValid)
             {
@@ -67,8 +67,8 @@ namespace Eshop_bookstore.Controllers
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Fullname", cart.AccountId);
-            ViewData["ProductId"] = new SelectList(_context.Set<Products>(), "Id", "Name", cart.ProductId);
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Id", cart.AccountId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", cart.ProductId);
             return View(cart);
         }
 
@@ -80,13 +80,13 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var cart = await _context.Cart.FindAsync(id);
+            var cart = await _context.Carts.FindAsync(id);
             if (cart == null)
             {
                 return NotFound();
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Fullname", cart.AccountId);
-            ViewData["ProductId"] = new SelectList(_context.Set<Products>(), "Id", "Name", cart.ProductId);
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Id", cart.AccountId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", cart.ProductId);
             return View(cart);
         }
 
@@ -95,7 +95,7 @@ namespace Eshop_bookstore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountId,ProductId,Quanity")] Cart cart)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,AccountId,ProductId,Quantity")] Cart cart)
         {
             if (id != cart.Id)
             {
@@ -122,8 +122,8 @@ namespace Eshop_bookstore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Fullname", cart.AccountId);
-            ViewData["ProductId"] = new SelectList(_context.Set<Products>(), "Id", "Name", cart.ProductId);
+            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Id", cart.AccountId);
+            ViewData["ProductId"] = new SelectList(_context.Products, "Id", "Id", cart.ProductId);
             return View(cart);
         }
 
@@ -135,9 +135,9 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var cart = await _context.Cart
-                .Include(c => c.Accounts)
-                .Include(c => c.Products)
+            var cart = await _context.Carts
+                .Include(c => c.Account)
+                .Include(c => c.Product)
                 .FirstOrDefaultAsync(m => m.Id == id);
             if (cart == null)
             {
@@ -152,15 +152,15 @@ namespace Eshop_bookstore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var cart = await _context.Cart.FindAsync(id);
-            _context.Cart.Remove(cart);
+            var cart = await _context.Carts.FindAsync(id);
+            _context.Carts.Remove(cart);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
         private bool CartExists(int id)
         {
-            return _context.Cart.Any(e => e.Id == id);
+            return _context.Carts.Any(e => e.Id == id);
         }
     }
 }

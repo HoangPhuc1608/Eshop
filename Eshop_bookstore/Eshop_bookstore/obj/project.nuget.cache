@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "OEOtaF0jey2wtdkay5d8coJN8mGL6Td/PvlgwSKyRvC35qZtpIzOJ+ysUMb0vQGVHthk+2Q277WPLpixPG7EIQ==",
+  "dgSpecHash": "mWFFCpEtlAXxMoWWIMrR6Zez0QViH2C9WMdFZgeS0JaYIAPiOMTkLfsaNUCwQOlCY4KoWyJGryLRZ0E47PGVIQ==",
   "success": true,
-  "projectFilePath": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Do_an\\Eshop\\EShop\\Eshop_bookstore\\Eshop_bookstore\\Eshop_bookstore.csproj",
+  "projectFilePath": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\Eshop_Bookstore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\HP\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\HP\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",

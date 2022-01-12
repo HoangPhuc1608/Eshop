@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Eshop_bookstore.Models.Invoices>
+﻿@model IEnumerable<Eshop_Bookstore.Models.Invoice>
 
 @{
     ViewData["Title"] = "Index";
@@ -16,7 +16,7 @@
                 @Html.DisplayNameFor(model => model.Code)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Accounts)
+                @Html.DisplayNameFor(model => model.AccoutId)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.IssueDate)
@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.Code)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Accounts.Fullname)
+                @Html.DisplayFor(modelItem => item.AccoutId)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.IssueDate)

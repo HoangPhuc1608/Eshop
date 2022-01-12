@@ -7142,6 +7142,7 @@
   },
   "projectFileDependencyGroups": {
     "net5.0": [
+      "Microsoft.EntityFrameworkCore.Design >= 5.0.12",
       "Microsoft.EntityFrameworkCore.SqlServer >= 5.0.12",
       "Microsoft.EntityFrameworkCore.Tools >= 5.0.12",
       "Microsoft.VisualStudio.Web.CodeGeneration.Design >= 5.0.2"
@@ -7154,11 +7155,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Do_an\\Eshop\\EShop\\Eshop_bookstore\\Eshop_bookstore\\Eshop_bookstore.csproj",
-      "projectName": "Eshop_bookstore",
-      "projectPath": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Do_an\\Eshop\\EShop\\Eshop_bookstore\\Eshop_bookstore\\Eshop_bookstore.csproj",
+      "projectUniqueName": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\Eshop_Bookstore.csproj",
+      "projectName": "Eshop_Bookstore",
+      "projectPath": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\Eshop_Bookstore.csproj",
       "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Do_an\\Eshop\\EShop\\Eshop_bookstore\\Eshop_bookstore\\obj\\",
+      "outputPath": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -7191,6 +7192,12 @@
       "net5.0": {
         "targetAlias": "net5.0",
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": {
+            "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+            "suppressParent": "All",
+            "target": "Package",
+            "version": "[5.0.12, )"
+          },
           "Microsoft.EntityFrameworkCore.SqlServer": {
             "target": "Package",
             "version": "[5.0.12, )"

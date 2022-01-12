@@ -9,9 +9,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Eshop_bookstore.Data;
+using Eshop_Bookstore.Data;
 
-namespace Eshop_bookstore
+namespace Eshop_Bookstore
 {
     public class Startup
     {
@@ -27,9 +27,8 @@ namespace Eshop_bookstore
         {
             services.AddControllersWithViews();
 
-            services.AddDbContext<Eshop_bookstoreContext>(options =>
-                    options.UseSqlServer(Configuration.GetConnectionString("Eshop_bookstoreContext")));
-
+            services.AddDbContext<Eshop_BookstoreContext>(options =>
+                    options.UseSqlServer(Configuration.GetConnectionString("Eshop_BookstoreContext")));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -54,10 +53,6 @@ namespace Eshop_bookstore
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllerRoute(
-                    name: "areas",
-                    pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}"
-                  );
                 endpoints.MapControllerRoute(
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");

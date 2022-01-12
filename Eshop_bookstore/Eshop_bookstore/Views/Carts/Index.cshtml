@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Eshop_bookstore.Models.Cart>
+﻿@model IEnumerable<Eshop_Bookstore.Models.Cart>
 
 @{
     ViewData["Title"] = "Index";
@@ -13,13 +13,13 @@
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.Accounts)
+                @Html.DisplayNameFor(model => model.Account)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Products)
+                @Html.DisplayNameFor(model => model.Product)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Quanity)
+                @Html.DisplayNameFor(model => model.Quantity)
             </th>
             <th></th>
         </tr>
@@ -28,13 +28,13 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.Accounts.Fullname)
+                @Html.DisplayFor(modelItem => item.Account.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Products.Name)
+                @Html.DisplayFor(modelItem => item.Product.Id)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Quanity)
+                @Html.DisplayFor(modelItem => item.Quantity)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |

@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Eshop_bookstore.Data;
-using Eshop_bookstore.Models;
+using Eshop_Bookstore.Data;
+using Eshop_Bookstore.Models;
 
-namespace Eshop_bookstore.Controllers
+namespace Eshop_Bookstore.Controllers
 {
     public class ProductsController : Controller
     {
-        private readonly Eshop_bookstoreContext _context;
+        private readonly Eshop_BookstoreContext _context;
 
-        public ProductsController(Eshop_bookstoreContext context)
+        public ProductsController(Eshop_BookstoreContext context)
         {
             _context = context;
         }
@@ -22,8 +22,8 @@ namespace Eshop_bookstore.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
-            var eshop_bookstoreContext = _context.Products.Include(p => p.ProductTypes);
-            return View(await eshop_bookstoreContext.ToListAsync());
+            var eshop_BookstoreContext = _context.Products.Include(p => p.ProductType);
+            return View(await eshop_BookstoreContext.ToListAsync());
         }
 
         // GET: Products/Details/5
@@ -34,21 +34,21 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var products = await _context.Products
-                .Include(p => p.ProductTypes)
+            var product = await _context.Products
+                .Include(p => p.ProductType)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (products == null)
+            if (product == null)
             {
                 return NotFound();
             }
 
-            return View(products);
+            return View(product);
         }
 
         // GET: Products/Create
         public IActionResult Create()
         {
-            ViewData["ProductTypeId"] = new SelectList(_context.Set<ProductTypes>(), "Id", "Id");
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "Id", "Id");
             return View();
         }
 
@@ -57,16 +57,16 @@ namespace Eshop_bookstore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,SKU,Name,Decription,Price,Stock,ProductTypeId,Image,Status")] Products products)
+        public async Task<IActionResult> Create([Bind("Id,SKU,Name,Decription,Price,Stock,ProductTypeId,Image,Status")] Product product)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(products);
+                _context.Add(product);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductTypeId"] = new SelectList(_context.Set<ProductTypes>(), "Id", "Id", products.ProductTypeId);
-            return View(products);
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "Id", "Id", product.ProductTypeId);
+            return View(product);
         }
 
         // GET: Products/Edit/5
@@ -77,13 +77,13 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var products = await _context.Products.FindAsync(id);
-            if (products == null)
+            var product = await _context.Products.FindAsync(id);
+            if (product == null)
             {
                 return NotFound();
             }
-            ViewData["ProductTypeId"] = new SelectList(_context.Set<ProductTypes>(), "Id", "Id", products.ProductTypeId);
-            return View(products);
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "Id", "Id", product.ProductTypeId);
+            return View(product);
         }
 
         // POST: Products/Edit/5
@@ -91,9 +91,9 @@ namespace Eshop_bookstore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,SKU,Name,Decription,Price,Stock,ProductTypeId,Image,Status")] Products products)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,SKU,Name,Decription,Price,Stock,ProductTypeId,Image,Status")] Product product)
         {
-            if (id != products.Id)
+            if (id != product.Id)
             {
                 return NotFound();
             }
@@ -102,12 +102,12 @@ namespace Eshop_bookstore.Controllers
             {
                 try
                 {
-                    _context.Update(products);
+                    _context.Update(product);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!ProductsExists(products.Id))
+                    if (!ProductExists(product.Id))
                     {
                         return NotFound();
                     }
@@ -118,8 +118,8 @@ namespace Eshop_bookstore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["ProductTypeId"] = new SelectList(_context.Set<ProductTypes>(), "Id", "Id", products.ProductTypeId);
-            return View(products);
+            ViewData["ProductTypeId"] = new SelectList(_context.ProductTypes, "Id", "Id", product.ProductTypeId);
+            return View(product);
         }
 
         // GET: Products/Delete/5
@@ -130,15 +130,15 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var products = await _context.Products
-                .Include(p => p.ProductTypes)
+            var product = await _context.Products
+                .Include(p => p.ProductType)
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (products == null)
+            if (product == null)
             {
                 return NotFound();
             }
 
-            return View(products);
+            return View(product);
         }
 
         // POST: Products/Delete/5
@@ -146,13 +146,13 @@ namespace Eshop_bookstore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var products = await _context.Products.FindAsync(id);
-            _context.Products.Remove(products);
+            var product = await _context.Products.FindAsync(id);
+            _context.Products.Remove(product);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool ProductsExists(int id)
+        private bool ProductExists(int id)
         {
             return _context.Products.Any(e => e.Id == id);
         }

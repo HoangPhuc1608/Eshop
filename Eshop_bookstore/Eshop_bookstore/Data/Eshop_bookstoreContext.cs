@@ -3,27 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Eshop_bookstore.Models;
+using Eshop_Bookstore.Models;
 
-namespace Eshop_bookstore.Data
+namespace Eshop_Bookstore.Data
 {
-    public class Eshop_bookstoreContext : DbContext
+    public class Eshop_BookstoreContext : DbContext
     {
-        public Eshop_bookstoreContext (DbContextOptions<Eshop_bookstoreContext> options)
+        public Eshop_BookstoreContext (DbContextOptions<Eshop_BookstoreContext> options)
             : base(options)
         {
         }
 
-        public DbSet<Eshop_bookstore.Models.Accounts> Accounts { get; set; }
+        public DbSet<ProductType> ProductTypes { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<Cart> Carts { get; set; }
+        public DbSet<Account> Accounts { get; set; }
+        public DbSet<Invoice> Invoices { get; set; }
+        public DbSet<InvoiceDetail> InvoiceDetails { get; set; }
 
-        public DbSet<Eshop_bookstore.Models.Cart> Cart { get; set; }
 
-        public DbSet<Eshop_bookstore.Models.InvoiceDetails> InvoiceDetails { get; set; }
-
-        public DbSet<Eshop_bookstore.Models.Invoices> Invoices { get; set; }
-
-        public DbSet<Eshop_bookstore.Models.Products> Products { get; set; }
-
-        public DbSet<Eshop_bookstore.Models.ProductTypes> ProductTypes { get; set; }
     }
 }

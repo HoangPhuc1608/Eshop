@@ -1,4 +1,4 @@
-﻿@model Eshop_bookstore.Models.Cart
+﻿@model Eshop_Bookstore.Models.Cart
 
 @{
     ViewData["Title"] = "Delete";
@@ -12,22 +12,22 @@
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Accounts)
+            @Html.DisplayNameFor(model => model.Account)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Accounts.Fullname)
+            @Html.DisplayFor(model => model.Account.Id)
         </dd class>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Products)
+            @Html.DisplayNameFor(model => model.Product)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Products.Name)
+            @Html.DisplayFor(model => model.Product.Id)
         </dd class>
         <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.Quanity)
+            @Html.DisplayNameFor(model => model.Quantity)
         </dt>
         <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.Quanity)
+            @Html.DisplayFor(model => model.Quantity)
         </dd>
     </dl>
     

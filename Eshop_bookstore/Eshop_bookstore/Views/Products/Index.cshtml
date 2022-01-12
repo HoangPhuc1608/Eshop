@@ -1,4 +1,4 @@
-﻿@model IEnumerable<Eshop_bookstore.Models.Products>
+﻿@model IEnumerable<Eshop_Bookstore.Models.Product>
 
 @{
     ViewData["Title"] = "Index";
@@ -28,7 +28,7 @@
                 @Html.DisplayNameFor(model => model.Stock)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductTypes)
+                @Html.DisplayNameFor(model => model.ProductType)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Image)
@@ -58,7 +58,7 @@
                 @Html.DisplayFor(modelItem => item.Stock)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductTypes.Id)
+                @Html.DisplayFor(modelItem => item.ProductType.Id)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Image)

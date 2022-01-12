@@ -31,8 +31,9 @@
   },
   "targets": {
     ".NETCoreApp,Version=v5.0": {
-      "Eshop_bookstore/1.0.0": {
+      "Eshop_Bookstore/1.0.0": {
         "dependencies": {
+          "Microsoft.EntityFrameworkCore.Design": "5.0.12",
           "Microsoft.EntityFrameworkCore.SqlServer": "5.0.12",
           "Microsoft.EntityFrameworkCore.Tools": "5.0.12",
           "Microsoft.VisualStudio.Web.CodeGeneration.Design": "5.0.2",
@@ -319,10 +320,10 @@
           "WindowsBase": "4.0.0.0"
         },
         "runtime": {
-          "Eshop_bookstore.dll": {}
+          "Eshop_Bookstore.dll": {}
         },
         "compile": {
-          "Eshop_bookstore.dll": {}
+          "Eshop_Bookstore.dll": {}
         }
       },
       "Humanizer.Core/2.8.26": {
@@ -3489,7 +3490,7 @@
     }
   },
   "libraries": {
-    "Eshop_bookstore/1.0.0": {
+    "Eshop_Bookstore/1.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""
