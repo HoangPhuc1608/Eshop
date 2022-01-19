@@ -10,7 +10,7 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
                 <label asp-for="SKU" class="control-label"></label>
@@ -23,8 +23,13 @@
                 <span asp-validation-for="Name" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Actor" class="control-label"></label>
+                <input asp-for="Actor" class="form-control" />
+                <span asp-validation-for="Actor" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Decription" class="control-label"></label>
-                <input asp-for="Decription" class="form-control" />
+                <textarea rows="10" asp-for="Decription" class="form-control"></textarea>
                 <span asp-validation-for="Decription" class="text-danger"></span>
             </div>
             <div class="form-group">
@@ -39,12 +44,16 @@
             </div>
             <div class="form-group">
                 <label asp-for="ProductTypeId" class="control-label"></label>
-                <select asp-for="ProductTypeId" class ="form-control" asp-items="ViewBag.ProductTypeId"></select>
+                <select asp-for="ProductTypeId" class="form-control" asp-items="ViewBag.ProductTypeId"></select>
             </div>
             <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input asp-for="Image" class="form-control" />
+                <input accept="*.jpg,*.png" id="Full_Image" type="file" name="Full_Image" class="form-control" />
+                <input type="hidden" id="Image" asp-for="Image" class="form-control" />
                 <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+            <div class="pt-3 pb-3">
+                <img id="ImagePreview" src="~/EshopView/assets/img/No_image.png" alt="Alternate Text" style="width:200px;" />
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
@@ -55,6 +64,9 @@
                 <input type="submit" value="Create" class="btn btn-primary" />
             </div>
         </form>
+        <div>
+            <p class="text-danger">@(ViewBag.SizeError!=null?ViewBag.SizeError:"")</p>
+        </div>
     </div>
 </div>
 
@@ -64,4 +76,23 @@
 
 @section Scripts {
     @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+    <script>
+        $('#Full_Image').change(function () {
+            $('#Image').val('abc.jpg');
+            previewFile(this, '#ImagePreview');
+        });
+    function previewFile(input,imgID){
+        var file = input.files[0];
+
+        if(file){
+            var reader = new FileReader();
+
+            reader.onload = function(){
+                $(imgID).attr("src", reader.result);
+            }
+
+            reader.readAsDataURL(file);
+        }
+    }
+    </script>
 }

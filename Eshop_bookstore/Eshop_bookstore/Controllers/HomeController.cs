@@ -23,7 +23,12 @@ namespace Eshop_Bookstore.Controllers
             return View();
         }
 
-        public IActionResult Privacy()
+        public IActionResult Blog()
+        {
+            return View();
+        }
+
+        public IActionResult Contact()
         {
             return View();
         }

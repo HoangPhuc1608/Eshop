@@ -156,6 +156,9 @@ namespace Eshop_Bookstore.Migrations
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
+                    b.Property<string>("Actor")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("Decription")
                         .HasColumnType("nvarchar(max)");
 

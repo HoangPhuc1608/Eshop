@@ -130,7 +130,6 @@ D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\ne
 D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Eshop_Bookstore.TagHelpers.output.cache
 D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Eshop_Bookstore.RazorCoreGenerate.cache
 D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Home\Index.cshtml.g.cs
-D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Home\Privacy.cshtml.g.cs
 D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Shared\Error.cshtml.g.cs
 D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Shared\_Layout.cshtml.g.cs
 D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.cs
@@ -169,3 +168,10 @@ D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\ne
 D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\InvoiceDetails\Details.cshtml.g.cs
 D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\InvoiceDetails\Edit.cshtml.g.cs
 D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\InvoiceDetails\Index.cshtml.g.cs
+D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Products\Create.cshtml.g.cs
+D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Products\Delete.cshtml.g.cs
+D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Products\Details.cshtml.g.cs
+D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Products\Edit.cshtml.g.cs
+D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Products\Index.cshtml.g.cs
+D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Home\Blog.cshtml.g.cs
+D:\HocTap\HKIV\KiemThuPhanMem\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Views\Home\Contact.cshtml.g.cs
