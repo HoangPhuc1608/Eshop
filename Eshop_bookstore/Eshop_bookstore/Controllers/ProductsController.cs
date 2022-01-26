@@ -28,6 +28,7 @@ namespace Eshop_Bookstore.Controllers
         public async Task<IActionResult> Index()
         {
             var eshop_BookstoreContext = _context.Products.Include(p => p.ProductType);
+            ViewBag.LstProductTypes = await _context.ProductTypes.ToListAsync();
             return View(await eshop_BookstoreContext.ToListAsync());
         }
 
