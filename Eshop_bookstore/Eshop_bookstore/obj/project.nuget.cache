@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oM826cGfvf1tpBQJBQPx22zUUYFAZ89Nh+tM7vbiVw9SGP/Ue7JEdf4S1/BBCog1UQGv8T+8GbQsmZhmkKWDFA==",
+  "dgSpecHash": "o+M3LLQzLb7cvxdJJ3xrdycPoCUxNuniDcoLVHM+N+rp0nurkl+MnoWygJ+2n8hIlXQyc8iPt9oaKPRdVeWWqQ==",
   "success": true,
-  "projectFilePath": "D:\\Eshop\\Eshop_Bookstore\\Eshop_bookstore\\Eshop_bookstore.csproj",
+  "projectFilePath": "D:\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\Eshop_Bookstore.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Admin\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Admin\\.nuget\\packages\\microsoft.aspnetcore.html.abstractions\\2.2.0\\microsoft.aspnetcore.html.abstractions.2.2.0.nupkg.sha512",
@@ -129,5 +129,12 @@
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmldocument\\4.3.0\\system.xml.xmldocument.4.3.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.xml.xmlserializer\\4.3.0\\system.xml.xmlserializer.4.3.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problem reading the cache file D:\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }

@@ -1,4 +1,4 @@
-﻿using Eshop_bookstore.Models;
+﻿using Eshop_Bookstore.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using System;
@@ -7,7 +7,7 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Eshop_bookstore.Controllers
+namespace Eshop_Bookstore.Controllers
 {
     public class HomeController : Controller
     {

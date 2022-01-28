@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Eshop_bookstore.Data;
-using Eshop_bookstore.Models;
+using Eshop_Bookstore.Data;
+using Eshop_Bookstore.Models;
 
-namespace Eshop_bookstore.Controllers
+namespace Eshop_Bookstore.Controllers
 {
     public class AccountsController : Controller
     {
-        private readonly Eshop_bookstoreContext _context;
+        private readonly Eshop_BookstoreContext _context;
 
-        public AccountsController(Eshop_bookstoreContext context)
+        public AccountsController(Eshop_BookstoreContext context)
         {
             _context = context;
         }
@@ -33,14 +33,14 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var accounts = await _context.Accounts
+            var account = await _context.Accounts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (accounts == null)
+            if (account == null)
             {
                 return NotFound();
             }
 
-            return View(accounts);
+            return View(account);
         }
 
         // GET: Accounts/Create
@@ -54,15 +54,15 @@ namespace Eshop_bookstore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Username,Password,Email,Phone,Address,Fullname,IsAdmin,Avatar,Status")] Accounts accounts)
+        public async Task<IActionResult> Create([Bind("Id,Username,Password,Email,Phone,Address,FullName,IsAdmin,Avatar,Status")] Account account)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(accounts);
+                _context.Add(account);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            return View(accounts);
+            return View(account);
         }
 
         // GET: Accounts/Edit/5
@@ -73,12 +73,12 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var accounts = await _context.Accounts.FindAsync(id);
-            if (accounts == null)
+            var account = await _context.Accounts.FindAsync(id);
+            if (account == null)
             {
                 return NotFound();
             }
-            return View(accounts);
+            return View(account);
         }
 
         // POST: Accounts/Edit/5
@@ -86,9 +86,9 @@ namespace Eshop_bookstore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Password,Email,Phone,Address,Fullname,IsAdmin,Avatar,Status")] Accounts accounts)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Password,Email,Phone,Address,FullName,IsAdmin,Avatar,Status")] Account account)
         {
-            if (id != accounts.Id)
+            if (id != account.Id)
             {
                 return NotFound();
             }
@@ -97,12 +97,12 @@ namespace Eshop_bookstore.Controllers
             {
                 try
                 {
-                    _context.Update(accounts);
+                    _context.Update(account);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AccountsExists(accounts.Id))
+                    if (!AccountExists(account.Id))
                     {
                         return NotFound();
                     }
@@ -113,7 +113,7 @@ namespace Eshop_bookstore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(accounts);
+            return View(account);
         }
 
         // GET: Accounts/Delete/5
@@ -124,14 +124,14 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var accounts = await _context.Accounts
+            var account = await _context.Accounts
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (accounts == null)
+            if (account == null)
             {
                 return NotFound();
             }
 
-            return View(accounts);
+            return View(account);
         }
 
         // POST: Accounts/Delete/5
@@ -139,13 +139,13 @@ namespace Eshop_bookstore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var accounts = await _context.Accounts.FindAsync(id);
-            _context.Accounts.Remove(accounts);
+            var account = await _context.Accounts.FindAsync(id);
+            _context.Accounts.Remove(account);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AccountsExists(int id)
+        private bool AccountExists(int id)
         {
             return _context.Accounts.Any(e => e.Id == id);
         }

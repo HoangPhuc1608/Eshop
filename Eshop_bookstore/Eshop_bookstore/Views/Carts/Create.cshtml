@@ -1,4 +1,4 @@
-﻿@model Eshop_bookstore.Models.Cart
+﻿@model Eshop_Bookstore.Models.Cart
 
 @{
     ViewData["Title"] = "Create";
@@ -21,9 +21,9 @@
                 <select asp-for="ProductId" class ="form-control" asp-items="ViewBag.ProductId"></select>
             </div>
             <div class="form-group">
-                <label asp-for="Quanity" class="control-label"></label>
-                <input asp-for="Quanity" class="form-control" />
-                <span asp-validation-for="Quanity" class="text-danger"></span>
+                <label asp-for="Quantity" class="control-label"></label>
+                <input asp-for="Quantity" class="form-control" />
+                <span asp-validation-for="Quantity" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

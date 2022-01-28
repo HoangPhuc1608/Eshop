@@ -5,16 +5,16 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using Eshop_bookstore.Data;
-using Eshop_bookstore.Models;
+using Eshop_Bookstore.Data;
+using Eshop_Bookstore.Models;
 
-namespace Eshop_bookstore.Controllers
+namespace Eshop_Bookstore.Controllers
 {
     public class InvoicesController : Controller
     {
-        private readonly Eshop_bookstoreContext _context;
+        private readonly Eshop_BookstoreContext _context;
 
-        public InvoicesController(Eshop_bookstoreContext context)
+        public InvoicesController(Eshop_BookstoreContext context)
         {
             _context = context;
         }
@@ -22,8 +22,7 @@ namespace Eshop_bookstore.Controllers
         // GET: Invoices
         public async Task<IActionResult> Index()
         {
-            var eshop_bookstoreContext = _context.Invoices.Include(i => i.Accounts);
-            return View(await eshop_bookstoreContext.ToListAsync());
+            return View(await _context.Invoices.ToListAsync());
         }
 
         // GET: Invoices/Details/5
@@ -34,21 +33,19 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var invoices = await _context.Invoices
-                .Include(i => i.Accounts)
+            var invoice = await _context.Invoices
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (invoices == null)
+            if (invoice == null)
             {
                 return NotFound();
             }
 
-            return View(invoices);
+            return View(invoice);
         }
 
         // GET: Invoices/Create
         public IActionResult Create()
         {
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Fullname");
             return View();
         }
 
@@ -57,16 +54,15 @@ namespace Eshop_bookstore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Code,AccountId,IssueDate,ShippingAddress,ShippingPhone,Total,Status")] Invoices invoices)
+        public async Task<IActionResult> Create([Bind("Id,Code,AccoutId,IssueDate,ShippingAddress,ShippingPhone,Total,Status")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(invoices);
+                _context.Add(invoice);
                 await _context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Fullname", invoices.AccountId);
-            return View(invoices);
+            return View(invoice);
         }
 
         // GET: Invoices/Edit/5
@@ -77,13 +73,12 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var invoices = await _context.Invoices.FindAsync(id);
-            if (invoices == null)
+            var invoice = await _context.Invoices.FindAsync(id);
+            if (invoice == null)
             {
                 return NotFound();
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Fullname", invoices.AccountId);
-            return View(invoices);
+            return View(invoice);
         }
 
         // POST: Invoices/Edit/5
@@ -91,9 +86,9 @@ namespace Eshop_bookstore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Code,AccountId,IssueDate,ShippingAddress,ShippingPhone,Total,Status")] Invoices invoices)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Code,AccoutId,IssueDate,ShippingAddress,ShippingPhone,Total,Status")] Invoice invoice)
         {
-            if (id != invoices.Id)
+            if (id != invoice.Id)
             {
                 return NotFound();
             }
@@ -102,12 +97,12 @@ namespace Eshop_bookstore.Controllers
             {
                 try
                 {
-                    _context.Update(invoices);
+                    _context.Update(invoice);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!InvoicesExists(invoices.Id))
+                    if (!InvoiceExists(invoice.Id))
                     {
                         return NotFound();
                     }
@@ -118,8 +113,7 @@ namespace Eshop_bookstore.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["AccountId"] = new SelectList(_context.Accounts, "Id", "Fullname", invoices.AccountId);
-            return View(invoices);
+            return View(invoice);
         }
 
         // GET: Invoices/Delete/5
@@ -130,15 +124,14 @@ namespace Eshop_bookstore.Controllers
                 return NotFound();
             }
 
-            var invoices = await _context.Invoices
-                .Include(i => i.Accounts)
+            var invoice = await _context.Invoices
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (invoices == null)
+            if (invoice == null)
             {
                 return NotFound();
             }
 
-            return View(invoices);
+            return View(invoice);
         }
 
         // POST: Invoices/Delete/5
@@ -146,13 +139,13 @@ namespace Eshop_bookstore.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var invoices = await _context.Invoices.FindAsync(id);
-            _context.Invoices.Remove(invoices);
+            var invoice = await _context.Invoices.FindAsync(id);
+            _context.Invoices.Remove(invoice);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool InvoicesExists(int id)
+        private bool InvoiceExists(int id)
         {
             return _context.Invoices.Any(e => e.Id == id);
         }
