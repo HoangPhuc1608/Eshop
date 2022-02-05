@@ -1,34 +1,35 @@
-﻿@model IEnumerable<Eshop_Bookstore.Models.Product>
+﻿@model IEnumerable<Eshop_Bookstore.Models.Invoice>
 
 @{
     ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>Danh sách sản phẩm</h1>
-<a class="btn btn-primary" asp-action="Create" role="button">Thêm sản phẩm</a>
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
 <table class="table">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.SKU)
+                @Html.DisplayNameFor(model => model.Code)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Name)
+                @Html.DisplayNameFor(model => model.AccoutId)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Decription)
+                @Html.DisplayNameFor(model => model.IssueDate)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Price)
+                @Html.DisplayNameFor(model => model.ShippingAddress)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Stock)
+                @Html.DisplayNameFor(model => model.ShippingPhone)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.ProductType)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Image)
+                @Html.DisplayNameFor(model => model.Total)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
@@ -40,25 +41,22 @@
 @foreach (var item in Model) {
         <tr>
             <td>
-                @Html.DisplayFor(modelItem => item.SKU)
+                @Html.DisplayFor(modelItem => item.Code)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Name)
+                @Html.DisplayFor(modelItem => item.AccoutId)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Decription)
+                @Html.DisplayFor(modelItem => item.IssueDate)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Price)
+                @Html.DisplayFor(modelItem => item.ShippingAddress)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Stock)
+                @Html.DisplayFor(modelItem => item.ShippingPhone)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.ProductType.Id)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Image)
+                @Html.DisplayFor(modelItem => item.Total)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Status)

@@ -6,16 +6,12 @@ using System.Threading.Tasks;
 
 namespace Eshop_Bookstore.Areas.Admin.Controllers
 {
-    [Area("Admin")]
     public class HomeController : Controller
     {
+        [Area("Admin")]
         public IActionResult Index()
         {
             return View();
-        }
-        public IActionResult LoginAdmin()
-        {
-            return RedirectToAction("Index");
         }
     }
 }

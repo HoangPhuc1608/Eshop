@@ -369,4 +369,9 @@ D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Areas\Admin\View
 D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewImports.cshtml.g.cs
 D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Areas\Admin\Views\_ViewStart.cshtml.g.cs
 D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\staticwebassets\Eshop_Bookstore.StaticWebAssets.xml
-D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Login\Index.cshtml.g.cs
+D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Auth\Login.cshtml.g.cs
+D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Invoices\Create.cshtml.g.cs
+D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Invoices\Delete.cshtml.g.cs
+D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Invoices\Details.cshtml.g.cs
+D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Invoices\Edit.cshtml.g.cs
+D:\Eshop\Eshop_Bookstore\Eshop_Bookstore\obj\Debug\net5.0\Razor\Areas\Admin\Views\Invoices\Index.cshtml.g.cs

@@ -7,30 +7,26 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Eshop_Bookstore.Data;
 using Eshop_Bookstore.Models;
-using System.IO;
-using Microsoft.AspNetCore.Hosting;
 
 namespace Eshop_Bookstore.Areas.Admin.Controllers
 {
     [Area("Admin")]
-    public class AccountsController : Controller
+    public class InvoicesController : Controller
     {
         private readonly Eshop_BookstoreContext _context;
-        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AccountsController(Eshop_BookstoreContext context, IWebHostEnvironment webHostEnvironment)
+        public InvoicesController(Eshop_BookstoreContext context)
         {
             _context = context;
-            _webHostEnvironment = webHostEnvironment;
         }
 
-        // GET: Admin/Accounts
+        // GET: Admin/Invoices
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Accounts.ToListAsync());
+            return View(await _context.Invoices.ToListAsync());
         }
 
-        // GET: Admin/Accounts/Details/5
+        // GET: Admin/Invoices/Details/5
         public async Task<IActionResult> Details(int? id)
         {
             if (id == null)
@@ -38,52 +34,39 @@ namespace Eshop_Bookstore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var account = await _context.Accounts
+            var invoice = await _context.Invoices
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (account == null)
+            if (invoice == null)
             {
                 return NotFound();
             }
 
-            return View(account);
+            return View(invoice);
         }
 
-        // GET: Admin/Accounts/Create
+        // GET: Admin/Invoices/Create
         public IActionResult Create()
         {
             return View();
         }
 
-        // POST: Admin/Accounts/Create
+        // POST: Admin/Invoices/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Username,Password,Email,Phone,Address,FullName,IsAdmin,Avatar,Status")] Account account)
+        public async Task<IActionResult> Create([Bind("Id,Code,AccoutId,IssueDate,ShippingAddress,ShippingPhone,Total,Status")] Invoice invoice)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(account);
+                _context.Add(invoice);
                 await _context.SaveChangesAsync();
-                if(account.Avatar != null)
-                {
-                    var fileName = account.Id.ToString() + Path.GetExtension(account.Avatar.FileName);
-                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "account");
-                    var filePath = Path.Combine(uploadPath, fileName);
-                    using (FileStream fs = System.IO.File.Create(filePath))
-                    {
-                        account.Avatar.CopyTo(fs);
-                        fs.Flush();
-                    }
-                    account.Avatar = fileName;
-                    _context.Update(account);
-                }
                 return RedirectToAction(nameof(Index));
             }
-            return View(account);
+            return View(invoice);
         }
 
-        // GET: Admin/Accounts/Edit/5
+        // GET: Admin/Invoices/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -91,22 +74,22 @@ namespace Eshop_Bookstore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var account = await _context.Accounts.FindAsync(id);
-            if (account == null)
+            var invoice = await _context.Invoices.FindAsync(id);
+            if (invoice == null)
             {
                 return NotFound();
             }
-            return View(account);
+            return View(invoice);
         }
 
-        // POST: Admin/Accounts/Edit/5
+        // POST: Admin/Invoices/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Password,Email,Phone,Address,FullName,IsAdmin,Avatar,Status")] Account account)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Code,AccoutId,IssueDate,ShippingAddress,ShippingPhone,Total,Status")] Invoice invoice)
         {
-            if (id != account.Id)
+            if (id != invoice.Id)
             {
                 return NotFound();
             }
@@ -115,12 +98,12 @@ namespace Eshop_Bookstore.Areas.Admin.Controllers
             {
                 try
                 {
-                    _context.Update(account);
+                    _context.Update(invoice);
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)
                 {
-                    if (!AccountExists(account.Id))
+                    if (!InvoiceExists(invoice.Id))
                     {
                         return NotFound();
                     }
@@ -131,10 +114,10 @@ namespace Eshop_Bookstore.Areas.Admin.Controllers
                 }
                 return RedirectToAction(nameof(Index));
             }
-            return View(account);
+            return View(invoice);
         }
 
-        // GET: Admin/Accounts/Delete/5
+        // GET: Admin/Invoices/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -142,30 +125,30 @@ namespace Eshop_Bookstore.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var account = await _context.Accounts
+            var invoice = await _context.Invoices
                 .FirstOrDefaultAsync(m => m.Id == id);
-            if (account == null)
+            if (invoice == null)
             {
                 return NotFound();
             }
 
-            return View(account);
+            return View(invoice);
         }
 
-        // POST: Admin/Accounts/Delete/5
+        // POST: Admin/Invoices/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var account = await _context.Accounts.FindAsync(id);
-            _context.Accounts.Remove(account);
+            var invoice = await _context.Invoices.FindAsync(id);
+            _context.Invoices.Remove(invoice);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
 
-        private bool AccountExists(int id)
+        private bool InvoiceExists(int id)
         {
-            return _context.Accounts.Any(e => e.Id == id);
+            return _context.Invoices.Any(e => e.Id == id);
         }
     }
 }
