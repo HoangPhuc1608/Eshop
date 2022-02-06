@@ -9,7 +9,7 @@
     <div class="col-md-5">
         @*@using (Html.BeginForm("Register", "Home", FormMethod.Post))
         {*@
-        <form asp-controller="Home" asp-action="Register" method="post" enctype="multipart/form-data">
+        <form asp-controller="Account" asp-action="Create" method="post" enctype="multipart/form-data">
             <!-- Input and Submit elements -->
             @Html.ValidationSummary()
             @Html.AntiForgeryToken()
@@ -59,12 +59,12 @@
                         @Html.TextBoxFor(m => m.FullName, "", new { @class = "form-control", @placeholder = "FullName" })
                         @Html.ValidationMessageFor(m => m.FullName, "", new { @class = "badge badge-danger" })
                     </div>
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <br />
                         @Html.LabelFor(m => m.IsAdmin)
                         @Html.TextBoxFor(m => m.IsAdmin, "", new { @class = "form-control", @placeholder = "IsAdmin" })
                         @Html.ValidationMessageFor(m => m.IsAdmin, "", new { @class = "badge badge-danger" })
-                    </div>
+                    </div>*@
 
 
                     @*<div class="form-group">
