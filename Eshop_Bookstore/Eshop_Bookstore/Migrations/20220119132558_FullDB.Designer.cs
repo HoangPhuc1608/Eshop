@@ -4,14 +4,16 @@ using Eshop_Bookstore.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Eshop_Bookstore.Migrations
 {
     [DbContext(typeof(Eshop_BookstoreContext))]
-    partial class Eshop_BookstoreContextModelSnapshot : ModelSnapshot
+    [Migration("20220119132558_FullDB")]
+    partial class FullDB
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

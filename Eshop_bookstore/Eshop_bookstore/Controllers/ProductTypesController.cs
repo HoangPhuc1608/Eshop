@@ -35,6 +35,9 @@ namespace Eshop_Bookstore.Controllers
 
             var productType = await _context.ProductTypes
                 .FirstOrDefaultAsync(m => m.Id == id);
+            ViewBag.lstProduct = await _context.Products.Where(p => p.ProductTypeId == id).ToListAsync();
+            ViewBag.lstProductTypes = await _context.ProductTypes.ToArrayAsync();
+
             if (productType == null)
             {
                 return NotFound();
