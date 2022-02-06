@@ -75,7 +75,7 @@ namespace Eshop_Bookstore.Areas.Admin.Controllers
                         account.Avatar.CopyTo(fs);
                         fs.Flush();
                     }
-                    account.Avatar = fileName;
+                    account.avatar = fileName;
                     _context.Update(account);
                 }
                 return RedirectToAction(nameof(Index));
