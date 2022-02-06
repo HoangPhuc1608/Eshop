@@ -67,12 +67,12 @@ namespace Eshop_Bookstore.Areas.Admin.Controllers
                 await _context.SaveChangesAsync();
                 if(account.Avatar != null)
                 {
-                    var fileName = account.Id.ToString() + Path.GetExtension(account.Avatar.FileName);
-                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "account");
+                    var fileName = account.Id.ToString() + Path.GetExtension(account.AvatarFile.FileName);
+                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "EshopView", "assets", "img", "account");
                     var filePath = Path.Combine(uploadPath, fileName);
                     using (FileStream fs = System.IO.File.Create(filePath))
                     {
-                        account.Avatar.CopyTo(fs);
+                        account.AvatarFile.CopyTo(fs);
                         fs.Flush();
                     }
                     account.Avatar = fileName;
