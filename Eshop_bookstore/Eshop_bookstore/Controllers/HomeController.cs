@@ -27,8 +27,20 @@ namespace Eshop_Bookstore.Controllers
             _context = context;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var username = HttpContext.Session.GetString("username");
+            var password = HttpContext.Session.GetString("password");
+            if (username != null)
+            {
+                var userLogin = await _context.Accounts.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+                ViewBag.UserLogin = userLogin;
+            }
+            else
+            {
+                ViewBag.UserLogin = null;
+            }
+
             return View();
         }
 
@@ -72,13 +84,24 @@ namespace Eshop_Bookstore.Controllers
             }
 
             var userLogin = ViewBag.UserLogin;
-            if(userLogin.IsAdmin)
+            if(userLogin != null)
             {
-                return RedirectToAction("Home", "Admin");
+                if (userLogin.IsAdmin)
+                {
+                    HttpContext.Session.SetString("username", user.Username);
+                    HttpContext.Session.SetString("password", user.Password);
+                    return RedirectToAction("Home", "Admin");
+                }
+                else
+                {
+                    HttpContext.Session.SetString("username", user.Username);
+                    HttpContext.Session.SetString("password", user.Password);
+                    return RedirectToAction("Index");
+                }
             }
             else
             {
-                return View("Index");
+                return RedirectToAction("Index");
             }
         }
 

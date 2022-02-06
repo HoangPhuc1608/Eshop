@@ -33,8 +33,9 @@ namespace Eshop_Bookstore.Areas.API.Controllers
             if(account != null && account.Username != null && account.Password != null)
             {
                 var user = await getUser(account.Username, account.Password);
+                
                 if(user != null)
-                {
+                {                    
                     var claims = new[]
                     {
                         new Claim(JwtRegisteredClaimNames.Sub, _configuration["Jwt:Subject"]),

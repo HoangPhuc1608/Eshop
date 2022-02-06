@@ -27,6 +27,18 @@ namespace Eshop_Bookstore.Controllers
         // GET: Products
         public async Task<IActionResult> Index()
         {
+            var username = HttpContext.Session.GetString("username");
+            var password = HttpContext.Session.GetString("password");
+            if (username != null)
+            {
+                var userLogin = await _context.Accounts.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+                ViewBag.UserLogin = userLogin;
+            }
+            else
+            {
+                ViewBag.UserLogin = null;
+            }
+
             var eshop_BookstoreContext = _context.Products.Include(p => p.ProductType);
             ViewBag.LstProductTypes = await _context.ProductTypes.ToListAsync();
             return View(await eshop_BookstoreContext.ToListAsync());

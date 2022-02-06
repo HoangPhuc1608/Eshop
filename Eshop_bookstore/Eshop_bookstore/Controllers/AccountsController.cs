@@ -7,16 +7,21 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Eshop_Bookstore.Data;
 using Eshop_Bookstore.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 
 namespace Eshop_Bookstore.Controllers
 {
     public class AccountsController : Controller
     {
         private readonly Eshop_BookstoreContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AccountsController(Eshop_BookstoreContext context)
+        public AccountsController(Eshop_BookstoreContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Accounts
@@ -54,20 +59,56 @@ namespace Eshop_Bookstore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Username,Password,Email,Phone,Address,FullName,IsAdmin,Avatar,Status")] Account account)
+        public async Task<IActionResult> Create([Bind("Id,Username,Password,Email,Phone,Address,FullName,IsAdmin,Avatar,AvatarFile,Status")] Account account)
         {
             if (ModelState.IsValid)
             {
+                //  Start Kiểm tra Username tồn tại hay chưa
+                var ac = await _context.Accounts.FirstOrDefaultAsync(u => u.Username == account.Username);
+
+                if(ac != null)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                //  End
+
+                account.Status = true;
                 _context.Add(account);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                if (account.AvatarFile != null)
+                {
+                    var fileName = account.Id.ToString() + Path.GetExtension(account.AvatarFile.FileName);
+                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "EshopView", "assets", "img", "account");
+                    var filePath = Path.Combine(uploadPath, fileName);
+                    using (FileStream fs = System.IO.File.Create(filePath))
+                    {
+                        account.AvatarFile.CopyTo(fs);
+                        fs.Flush();
+                    }
+                    account.Avatar = fileName;
+                    _context.Update(account);
+                    await _context.SaveChangesAsync();
+                }
+                return RedirectToAction("Index", "Home");
             }
-            return View(account);
+            return RedirectToAction("Create", "Accounts");
         }
 
         // GET: Accounts/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            var username = HttpContext.Session.GetString("username");
+            var password = HttpContext.Session.GetString("password");
+            if (username != null)
+            {
+                var userLogin = await _context.Accounts.FirstOrDefaultAsync(u => u.Username == username && u.Password == password);
+                ViewBag.UserLogin = userLogin;
+            }
+            else
+            {
+                ViewBag.UserLogin = null;
+            }
+
             if (id == null)
             {
                 return NotFound();
@@ -86,7 +127,7 @@ namespace Eshop_Bookstore.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Password,Email,Phone,Address,FullName,IsAdmin,Avatar,Status")] Account account)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Username,Password,Email,Phone,Address,FullName,IsAdmin,Avatar,AvatarFile,Status")] Account account)
         {
             if (id != account.Id)
             {
@@ -97,8 +138,28 @@ namespace Eshop_Bookstore.Controllers
             {
                 try
                 {
-                    _context.Update(account);
-                    await _context.SaveChangesAsync();
+                    //  Upload ảnh và Xóa ảnh
+                    if (account.AvatarFile != null)
+                    {
+                        //  Xóa ảnh
+                        var fileToDelete = Path.Combine(_webHostEnvironment.WebRootPath, "EshopView", "assets", "img", "account", account.Avatar);
+                        FileInfo fi = new FileInfo(fileToDelete);
+                        fi.Delete();
+
+                        //  Upload ảnh
+                        var fileName = account.Id.ToString() + Path.GetExtension(account.AvatarFile.FileName);
+                        var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "EshopView", "assets", "img", "account");
+                        var filePath = Path.Combine(uploadPath, fileName);
+                        using (FileStream fs = System.IO.File.Create(filePath))
+                        {
+                            account.AvatarFile.CopyTo(fs);
+                            fs.Flush();
+                        }
+                        account.Avatar = fileName;
+
+                        _context.Update(account);
+                        await _context.SaveChangesAsync();
+                    }
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -111,9 +172,10 @@ namespace Eshop_Bookstore.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
-            return View(account);
+            
+            return RedirectToAction("Index", "Home");
         }
 
         // GET: Accounts/Delete/5

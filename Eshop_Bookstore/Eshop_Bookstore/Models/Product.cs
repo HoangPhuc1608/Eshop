@@ -12,6 +12,7 @@ namespace Eshop_Bookstore.Models
         public int Id { get; set; }
         public string SKU { get; set; }
         public string Name { get; set; }
+        public string Actor { get; set; }
         public string Decription { get; set; }
         public int Price { get; set; }
         public int Stock { get; set; }
