@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Eshop_Bookstore.Data;
 using Eshop_Bookstore.Models;
+using System.IO;
+using Microsoft.AspNetCore.Hosting;
 
 namespace Eshop_Bookstore.Areas.Admin.Controllers
 {
@@ -14,10 +16,12 @@ namespace Eshop_Bookstore.Areas.Admin.Controllers
     public class AccountsController : Controller
     {
         private readonly Eshop_BookstoreContext _context;
+        private readonly IWebHostEnvironment _webHostEnvironment;
 
-        public AccountsController(Eshop_BookstoreContext context)
+        public AccountsController(Eshop_BookstoreContext context, IWebHostEnvironment webHostEnvironment)
         {
             _context = context;
+            _webHostEnvironment = webHostEnvironment;
         }
 
         // GET: Admin/Accounts
@@ -61,6 +65,19 @@ namespace Eshop_Bookstore.Areas.Admin.Controllers
             {
                 _context.Add(account);
                 await _context.SaveChangesAsync();
+                if(account.Avatar != null)
+                {
+                    var fileName = account.Id.ToString() + Path.GetExtension(account.Avatar.FileName);
+                    var uploadPath = Path.Combine(_webHostEnvironment.WebRootPath, "images", "account");
+                    var filePath = Path.Combine(uploadPath, fileName);
+                    using (FileStream fs = System.IO.File.Create(filePath))
+                    {
+                        account.Avatar.CopyTo(fs);
+                        fs.Flush();
+                    }
+                    account.Avatar = fileName;
+                    _context.Update(account);
+                }
                 return RedirectToAction(nameof(Index));
             }
             return View(account);

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Http;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -15,7 +17,8 @@ namespace Eshop_Bookstore.Models
         public string Address { get; set; }
         public string FullName { get; set; }
         public bool IsAdmin { get; set; }
-        public string Avatar { get; set; }
+        [NotMapped]
+        public IFormFile Avatar { get; set; }
         public bool Status { get; set; }
 
         public List<Cart> Carts { get; set; }
