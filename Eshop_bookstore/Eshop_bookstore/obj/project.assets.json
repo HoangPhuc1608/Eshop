@@ -7149,23 +7149,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HP\\.nuget\\packages\\": {},
+    "C:\\Users\\03061\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\Eshop_Bookstore.csproj",
+      "projectUniqueName": "D:\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\Eshop_Bookstore.csproj",
       "projectName": "Eshop_Bookstore",
-      "projectPath": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\Eshop_Bookstore.csproj",
-      "packagesPath": "C:\\Users\\HP\\.nuget\\packages\\",
-      "outputPath": "D:\\HocTap\\HKIV\\KiemThuPhanMem\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\obj\\",
+      "projectPath": "D:\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\Eshop_Bookstore.csproj",
+      "packagesPath": "C:\\Users\\03061\\.nuget\\packages\\",
+      "outputPath": "D:\\Eshop\\Eshop_Bookstore\\Eshop_Bookstore\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\03061\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7231,7 +7231,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.401\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.101\\RuntimeIdentifierGraph.json"
       }
     }
   }
